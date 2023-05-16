@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:rx_notifier/rx_notifier.dart';
 
-import '../models/chat_field.dart';
-import '../models/chat_model.dart';
+import '../atoms/chat_atom.dart';
 import '../widgets/chat_bubble.dart';
+import '../widgets/chat_field.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -12,22 +13,15 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final chatModels = [
-    ChatModel(text: 'Texto ssoskos'),
-    ChatModel(text: 'Texto ssoskosd3 2d 23d 23 d23', isSender: false),
-    ChatModel(text: 'Texto ssoskosd3 2d 23d 23 d23 dsad d', isSender: false),
-  ];
-
-  bool isLoading = false;
-
-  void _senderMessage(String message) {
-    setState(() {
-      chatModels.insert(0, ChatModel(text: 'Texto ssoskos'));
-    });
+  void _sendMessage(String message) {
+    sendMessageAction.value = message;
   }
 
   @override
   Widget build(BuildContext context) {
+    context.select(() => [chatsState.length, chatLoading.value]);
+    final isLoading = chatLoading.value;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('flutterGPT'),
@@ -47,21 +41,21 @@ class _HomePageState extends State<HomePage> {
               bottom: 80,
             ),
             reverse: true,
-            itemCount: chatModels.length,
+            itemCount: chatsState.length,
             itemBuilder: (context, index) {
-              return ChatBubble(model: chatModels[index]);
+              return ChatBubble(model: chatsState[index]);
             },
           ),
           Align(
             alignment: Alignment.bottomCenter,
             child: ChatField(
               sendEnabled: !isLoading,
-              onMessage: _senderMessage,
+              onMessage: _sendMessage,
             ),
           ),
           if (isLoading)
             const Align(
-              alignment: Alignment.bottomCenter,
+              alignment: Alignment.topCenter,
               child: LinearProgressIndicator(),
             ),
         ],

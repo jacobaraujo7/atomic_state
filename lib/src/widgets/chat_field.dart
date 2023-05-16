@@ -50,13 +50,14 @@ class _ChatFieldState extends State<ChatField> {
           filled: true,
           hintText: 'Pergunte...',
           suffixIcon: AnimatedBuilder(
-              animation: textController,
-              builder: (context, _) {
-                return IconButton(
-                  onPressed: !isButtonEnabled ? null : _senderMessage,
-                  icon: const Icon(Icons.send),
-                );
-              }),
+            animation: textController,
+            builder: (context, _) {
+              return IconButton(
+                onPressed: !isButtonEnabled ? null : _senderMessage,
+                icon: const Icon(Icons.send),
+              );
+            },
+          ),
         ),
       ),
     );
