@@ -43,7 +43,7 @@ class ProductCard extends StatelessWidget {
                     model.title,
                     style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
-                  Text('R\$ ${model.price}'),
+                  Text(model.toMoney()),
                 ],
               ),
             )

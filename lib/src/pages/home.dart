@@ -23,7 +23,7 @@ class _HomePageState extends State<HomePage> {
         id: 'dfas',
         title: 'Product name',
         image: 'https://classic.exame.com/wp-content/uploads/2020/05/mafe-studio-LV2p9Utbkbw-unsplash-1.jpg?quality=70&strip=info&w=1024',
-        price: 12.12,
+        price: 12.1,
       ),
   ];
 

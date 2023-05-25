@@ -13,6 +13,10 @@ class ProductModel {
     required this.price,
   });
 
+  String toMoney() {
+    return r'R$ ' + price.toStringAsFixed(2);
+  }
+
   // JSON Serializable
 
   Map<String, dynamic> toMap() {

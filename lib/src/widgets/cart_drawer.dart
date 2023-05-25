@@ -45,7 +45,7 @@ class CartDrawer extends StatelessWidget {
                       ),
                     ),
                     title: Text(model.title),
-                    subtitle: Text('R\$ ${model.price}'),
+                    subtitle: Text(model.toMoney()),
                     trailing: IconButton(
                       icon: const Icon(Icons.remove_circle_outline_rounded),
                       onPressed: () {},
