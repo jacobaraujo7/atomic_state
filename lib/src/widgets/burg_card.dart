@@ -1,11 +1,11 @@
-import 'package:atomic_state/src/models/product_model.dart';
 import 'package:flutter/material.dart';
 
-class ProductCard extends StatelessWidget {
-  final ProductModel model;
-  final void Function()? onTap;
+import '../models/burg_model.dart';
 
-  const ProductCard({
+class BurgCard extends StatelessWidget {
+  final BurgModel model;
+  final void Function()? onTap;
+  const BurgCard({
     super.key,
     required this.model,
     this.onTap,

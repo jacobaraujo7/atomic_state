@@ -33,6 +33,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.11.0"
+  auto_injector:
+    dependency: "direct main"
+    description:
+      name: auto_injector
+      sha256: f5d88ab039aa1622931907d6dec00be9d2c3efcfacb72d38cda4d683786d5b93
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.2+2"
   badges:
     dependency: "direct main"
     description:
@@ -275,6 +283,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.9.1"
+  mime_type:
+    dependency: transitive
+    description:
+      name: mime_type
+      sha256: "2ad6e67d3d2de9ac0f8ef5352d998fd103cb21351ae8c02fb0c78b079b37d275"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   package_config:
     dependency: transitive
     description:
@@ -416,6 +432,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.3.2"
+  universal_io:
+    dependency: transitive
+    description:
+      name: universal_io
+      sha256: "06866290206d196064fd61df4c7aea1ffe9a4e7c4ccaa8fcded42dd41948005d"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.2.0"
+  uno:
+    dependency: "direct main"
+    description:
+      name: uno
+      sha256: "012392eab495f49dab043d2e4c754fef3d5bf37730ea52d9e17afa45a3e8782b"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.8"
   vector_math:
     dependency: transitive
     description:

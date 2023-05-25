@@ -1,21 +1,21 @@
+import 'package:atomic_state/src/atom/cart_atom.dart';
 import 'package:flutter/material.dart';
-
-import '../models/product_model.dart';
+import 'package:rx_notifier/rx_notifier.dart';
 
 class CartDrawer extends StatelessWidget {
   const CartDrawer({super.key});
 
   @override
   Widget build(BuildContext context) {
-    var cartProducts = [
-      for (var i = 0; i < 5; i++)
-        ProductModel(
-          id: 'dfas',
-          title: 'Product name',
-          image: 'https://classic.exame.com/wp-content/uploads/2020/05/mafe-studio-LV2p9Utbkbw-unsplash-1.jpg?quality=70&strip=info&w=1024',
-          price: 12.12,
-        ),
-    ];
+    context.callback(() => cartBurgs.length, (value) {
+      if (cartBurgs.isEmpty) {
+        if (Navigator.canPop(context) && context.mounted) {
+          Navigator.of(context).pop();
+        }
+      }
+    });
+
+    context.select(() => [cartBurgs.length, finalValue.value]);
     return Drawer(
       width: 240,
       child: Padding(
@@ -31,9 +31,9 @@ class CartDrawer extends StatelessWidget {
             const SizedBox(height: 10),
             Expanded(
               child: ListView.builder(
-                itemCount: cartProducts.length,
+                itemCount: cartBurgs.length,
                 itemBuilder: (context, index) {
-                  final model = cartProducts[index];
+                  final model = cartBurgs[index];
                   return ListTile(
                     contentPadding: const EdgeInsets.symmetric(horizontal: 12),
                     leading: ClipOval(
@@ -48,7 +48,9 @@ class CartDrawer extends StatelessWidget {
                     subtitle: Text(model.toMoney()),
                     trailing: IconButton(
                       icon: const Icon(Icons.remove_circle_outline_rounded),
-                      onPressed: () {},
+                      onPressed: () {
+                        removeBurg.setValue(model);
+                      },
                     ),
                   );
                 },
@@ -60,7 +62,7 @@ class CartDrawer extends StatelessWidget {
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  'Valor: R\$ 0.00',
+                  'Valor: ${finalValue.value}',
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
               ),
@@ -73,7 +75,7 @@ class CartDrawer extends StatelessWidget {
             const SizedBox(height: 10),
             ElevatedButton(
               onPressed: () {
-                Navigator.pop(context);
+                cleanCart();
               },
               child: const Text('Limpar sacola'),
             ),

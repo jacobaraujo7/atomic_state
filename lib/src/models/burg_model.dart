@@ -1,12 +1,12 @@
 import 'dart:convert';
 
-class ProductModel {
+class BurgModel {
   final String id;
   final String title;
   final String image;
   final double price;
 
-  ProductModel({
+  BurgModel({
     required this.id,
     required this.title,
     required this.image,
@@ -28,8 +28,8 @@ class ProductModel {
     };
   }
 
-  factory ProductModel.fromMap(Map<String, dynamic> map) {
-    return ProductModel(
+  factory BurgModel.fromMap(dynamic map) {
+    return BurgModel(
       id: map['id'] ?? '',
       title: map['title'] ?? '',
       image: map['image'] ?? '',
@@ -39,5 +39,5 @@ class ProductModel {
 
   String toJson() => json.encode(toMap());
 
-  factory ProductModel.fromJson(String source) => ProductModel.fromMap(json.decode(source));
+  factory BurgModel.fromJson(String source) => BurgModel.fromMap(json.decode(source));
 }
