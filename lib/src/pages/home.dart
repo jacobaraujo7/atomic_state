@@ -1,9 +1,9 @@
+import 'package:atomic_state/src/models/product_model.dart';
+import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
-import 'package:rx_notifier/rx_notifier.dart';
 
-import '../atoms/chat_atom.dart';
-import '../widgets/chat_bubble.dart';
-import '../widgets/chat_field.dart';
+import '../widgets/cart_drawer.dart';
+import '../widgets/product_card.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -13,45 +13,43 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  void _sendMessage(String message) {
-    sendMessageAction.value = message;
-  }
+  final scaffoldKey = GlobalKey<ScaffoldState>();
+  ScaffoldState get scaffoldState => scaffoldKey.currentState!;
+
+  var isLoading = true;
+  var products = [
+    for (var i = 0; i < 5; i++)
+      ProductModel(
+        id: 'dfas',
+        title: 'Product name',
+        image: 'https://classic.exame.com/wp-content/uploads/2020/05/mafe-studio-LV2p9Utbkbw-unsplash-1.jpg?quality=70&strip=info&w=1024',
+        price: 12.12,
+      ),
+  ];
 
   @override
   Widget build(BuildContext context) {
-    context.select(() => [chatsState.length, chatLoading.value]);
-    final isLoading = chatLoading.value;
-
     return Scaffold(
+      key: scaffoldKey,
       appBar: AppBar(
+        actions: <Widget>[Container()],
         title: const Text('flutterGPT'),
         centerTitle: true,
       ),
+      endDrawer: const CartDrawer(),
       body: Stack(
         children: [
-          Align(
-            child: Icon(
-              Icons.rocket,
-              size: 300,
-              color: Colors.grey[200],
+          GridView.builder(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
             ),
-          ),
-          ListView.builder(
-            padding: const EdgeInsets.only(
-              bottom: 80,
-            ),
-            reverse: true,
-            itemCount: chatsState.length,
+            itemCount: products.length,
             itemBuilder: (context, index) {
-              return ChatBubble(model: chatsState[index]);
+              return ProductCard(
+                model: products[index],
+                onTap: () {},
+              );
             },
-          ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: ChatField(
-              sendEnabled: !isLoading,
-              onMessage: _sendMessage,
-            ),
           ),
           if (isLoading)
             const Align(
@@ -59,6 +57,15 @@ class _HomePageState extends State<HomePage> {
               child: LinearProgressIndicator(),
             ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          scaffoldState.openEndDrawer();
+        },
+        child: const badges.Badge(
+          badgeContent: Text('3'),
+          child: Icon(Icons.shopping_bag_outlined),
+        ),
       ),
     );
   }
