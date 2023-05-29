@@ -25,6 +25,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.4.1"
+  asp:
+    dependency: "direct main"
+    description:
+      name: asp
+      sha256: "4872745e9e5142189631f1fd06e0ce31426739ec1bf1512e0822438a4b940814"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.3"
   async:
     dependency: transitive
     description:
@@ -331,22 +339,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.3"
-  rx_notifier:
-    dependency: "direct main"
-    description:
-      name: rx_notifier
-      sha256: eb67724d2783d8fe67d4619d7f97bc4878e0e62a6b50e6bed6ec47361148c055
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.2.2"
-  rx_notifier_annotation:
-    dependency: transitive
-    description:
-      name: rx_notifier_annotation
-      sha256: "362496563d617aa6fa21ab9c131f66348f3266b6580d69ecc23d2c23a52070a2"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.0"
   rxdart:
     dependency: "direct main"
     description:

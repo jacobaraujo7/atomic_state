@@ -1,7 +1,7 @@
+import 'package:asp/asp.dart';
 import 'package:atomic_state/src/module.dart';
 import 'package:atomic_state/src/reducers/burg_reducer.dart';
 import 'package:flutter/material.dart';
-import 'package:rx_notifier/rx_notifier.dart';
 import 'package:uno/uno.dart';
 
 import 'src/pages/home.dart';

@@ -1,10 +1,10 @@
+import 'package:asp/asp.dart';
 import 'package:atomic_state/src/models/burg_model.dart';
-import 'package:rx_notifier/rx_notifier.dart';
 
 // atoms
 final burgs = RxList<BurgModel>([]);
-final burgLoading = RxNotifier(true);
+final burgLoading = Atom(true);
 
 // actions
-final fetchBurgs = RxNotifier.action();
-final addBurg = RxNotifier<BurgModel?>(null);
+final fetchBurgs = Atom.action();
+final addBurg = Atom<BurgModel?>(null);

@@ -1,6 +1,6 @@
+import 'package:asp/asp.dart';
 import 'package:atomic_state/src/atom/cart_atom.dart';
 import 'package:flutter/material.dart';
-import 'package:rx_notifier/rx_notifier.dart';
 
 class CartDrawer extends StatelessWidget {
   const CartDrawer({super.key});
@@ -9,8 +9,8 @@ class CartDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     context.callback(() => cartBurgs.length, (value) {
       if (cartBurgs.isEmpty) {
-        if (Navigator.canPop(context) && context.mounted) {
-          Navigator.of(context).pop();
+        if (context.mounted) {
+          Navigator.of(context).maybePop();
         }
       }
     });

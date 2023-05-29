@@ -1,10 +1,10 @@
+import 'package:asp/asp.dart';
 import 'package:atomic_state/src/atom/burg_atom.dart';
 import 'package:atomic_state/src/atom/cart_atom.dart';
-import 'package:rx_notifier/rx_notifier.dart';
 
 import '../services/burg_service.dart';
 
-class BurgReducer extends RxReducer {
+class BurgReducer extends Reducer {
   final BurgService service;
 
   BurgReducer(this.service) {

@@ -1,6 +1,6 @@
+import 'package:asp/asp.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
-import 'package:rx_notifier/rx_notifier.dart';
 
 import '../atom/burg_atom.dart';
 import '../atom/cart_atom.dart';
@@ -26,7 +26,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    context.select(() => [burgs.length, burgLoading]);
+    context.select(() => [burgs, burgLoading, cartBurgs]);
 
     return Scaffold(
       key: scaffoldKey,
@@ -66,13 +66,9 @@ class _HomePageState extends State<HomePage> {
             scaffoldState.openEndDrawer();
           }
         },
-        child: RxBuilder(
-          builder: (_) {
-            return badges.Badge(
-              badgeContent: Text('${cartBurgs.length}'),
-              child: const Icon(Icons.shopping_bag_outlined),
-            );
-          },
+        child: badges.Badge(
+          badgeContent: Text('${cartBurgs.length}'),
+          child: const Icon(Icons.shopping_bag_outlined),
         ),
       ),
     );
